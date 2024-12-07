@@ -1,16 +1,38 @@
 import requests
+import database_operations as db
+
+def send_request(method, extra_url, json=None, params=None):
+    response = requests.request(method, base_url + extra_url, json=json, params=params)
+    print(response.status_code)
+    print(response.json())
+    return response
 
 # The base URL of your Flask app
-base_url = "http://127.0.0.1:5000/users"
+base_url = "http://127.0.0.1:5000"
 
-# Define the username as a query parameter
-params = {'username': 'testuser'}
+# Send the POST request with the JSON data
+response = send_request('POST', '/users', json={
+    'username': 'testuser',
+    'password': 'testpassword',
+    'email': 'avsah@nxsjn'
+})
 
-# Send the GET request with the username parameter
-response = requests.get(base_url, params=params)
+print("_________________")
 
-# Print the response status code
-print("Status Code:", response.status_code)
+response = send_request('POST', '/users', json={
+    'username': 'testuser2',
+    'password': 'testpassword2',
+    'email': 'avsah@nxsjn'
+})
 
-# Print the response data (JSON)
-print("Response JSON:", response.json())
+print("_________________")
+
+response = send_request('GET', '/users')
+
+print("_________________")
+
+response = send_request('GET', '/users/testuser')
+
+# importa vaza de date si dai clear
+# db.clear_database()
+    
