@@ -1,7 +1,8 @@
+# backend_project/urls.py
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('hack_auth.urls')),
+    path('api/', include('api.urls')),  # Add this line for account URLs
 ]
