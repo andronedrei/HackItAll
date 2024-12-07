@@ -14,7 +14,19 @@ base_url = "http://127.0.0.1:5000"
 response = send_request('POST', '/users', json={
     'username': 'testuser',
     'password': 'testpassword',
-    'email': 'avsah@nxsjn'
+    'email': 'avsah@nxsjn',
+    'first_name': 'test',
+    'last_name': 'user',
+    'age': 20,
+    'phone': '1234567890',
+    'date_of_birth': '01-01-2000',
+    'nationality_country': 'Romania',
+    'nationality_city': 'Bucharest',
+    'residence_country': 'Romania',
+    'residence_city': 'Bucharest',
+    'profile_picture': 'https://www.google.com',
+    'latitude': 44.4268,
+    'longitude': 26.1025
 })
 
 print("_________________")
@@ -22,7 +34,19 @@ print("_________________")
 response = send_request('POST', '/users', json={
     'username': 'testuser2',
     'password': 'testpassword2',
-    'email': 'avsah@nxsjn'
+    'email': 'avsah@nxsjn',
+    'first_name': 'test',
+    'last_name': 'user',
+    'age': 20,
+    'phone': '1234567890',
+    'date_of_birth': '01-01-2000',
+    'nationality_country': 'Romania',
+    'nationality_city': 'Bucharest',
+    'residence_country': 'Romania',
+    'residence_city': 'Bucharest',
+    'profile_picture': 'https://www.google.com',
+    'latitude': 44.4268,
+    'longitude': 26.1025
 })
 
 print("_________________")
@@ -34,5 +58,5 @@ print("_________________")
 response = send_request('GET', '/users/testuser')
 
 # importa vaza de date si dai clear
-# db.clear_database()
+db.clear_database()
     

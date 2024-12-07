@@ -23,6 +23,10 @@ def get_users():
 def add_user():
     return jsonify(db.add_user(request))
 
+@app.route('/users/<username>', methods=['PUT'])
+def update_user_route(username):
+    return jsonify(db.update_user(username, request))
+
 # get a single user
 @app.route('/users/<username>', methods=['GET'])
 def get_user(username):
@@ -48,6 +52,41 @@ def get_user(username):
 #     conn.close()
 #     return redirect(url_for('index'))
 
+def reset_users_table():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+
+    # Drop the old table if it exists
+    c.execute('DROP TABLE IF EXISTS Users;')
+    print("Old 'Users' table dropped.")
+
+    # Recreate the table with the new schema
+    c.execute('''
+    CREATE TABLE IF NOT EXISTS Users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT NOT NULL,
+        password TEXT NOT NULL,
+        email TEXT NOT NULL,
+        first_name TEXT,
+        last_name TEXT,
+        age INTEGER,
+        phone TEXT,
+        date_of_birth TEXT,
+        nationality_country TEXT,
+        nationality_city TEXT,
+        residence_country TEXT,
+        residence_city TEXT,
+        profile_picture TEXT,
+        latitude REAL,
+        longitude REAL
+    );
+    ''')
+    conn.commit()
+    conn.close()
+    print("New 'Users' table created successfully.")
+
+
 if __name__ == '__main__':
+    #reset_users_table()
     db.create_database()
     app.run(debug=True, host='0.0.0.0', port=5000)
